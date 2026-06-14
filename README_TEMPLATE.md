@@ -1,5 +1,5 @@
-# [Project Title]
-> *One sentence. What did you analyze, build, or solve - and why does it matter?*
+# Renewable Energy and Weather Conditions Analysis
+> Explore the feasibility of installing solar panels in Antwerp, Belgium by assessing how local weather conditions affect their performance, and identifying the optimal operating conditions for maximum efficiency.
 
 ---
 
@@ -43,17 +43,8 @@
   Read it out loud. If it sounds like a form - rewrite it.
 
   WHAT GOOD LOOKS LIKE:
-  "A mid-size retail business was seeing inconsistent revenue across
-  its regional stores but couldn't identify the root cause. This project
-  explored 18 months of transaction data across five regions to determine
-  whether underperformance was driven by sales volume, pricing, or return
-  rates. The analysis revealed that one region's gap was almost entirely
-  explained by an unusually high return rate on a single product category -
-  a finding invisible in the company's top-level reporting."
+  A project engineer is tasked with commissioning a solar energy project. Short‑term weather changes explain about 61% of the variation in renewable energy output, this unpredictability makes grid planning harder, increases costs, and lowers efficiency—especially during cloudy or rainy conditions. The key business issue is how to manage this volatility to ensure stable performance and financial returns.
 
-  WHAT TO AVOID:
-  "This project analyzes sales data to find trends and insights."
-  (Too vague. Could describe 10,000 projects. Describes none of them.)
 -->
 
 **Context:** [The business, research, or personal situation that motivated this project.]
@@ -84,10 +75,15 @@
   (These can't fail - which means they can't succeed either.)
 -->
 
-- **Primary Objective:** [The main thing you set out to do]
-- **Secondary Objective 1:** [Supporting goal]
-- **Secondary Objective 2:** [Supporting goal]
-- **Secondary Objective 3:** [Remove if not applicable]
+- **Primary Objective:** Find which conditions , sunlight, cloud cover
+and temperature most influence renewable
+energy output.
+- **Secondary Objective 1:** Study how solar radiation (GHI) affects energy
+variation over different hours and months. 
+- **Secondary Objective 2:** Find out when energy output is most over the
+time of day or season.
+- **Secondary Objective 3:** Identify efficiency performance throughout
+the day 
 
 > 💡 *Every analysis decision in this project traces back to one of these objectives.*
 
