@@ -131,42 +131,6 @@ the day
 | Documentation | [Markdown] |
 
 
----
-
-## 4. Repository Structure
-
-```
-[project-root]/
-│
-├── data/
-│   ├── raw/                  # Original, unmodified source data - never edited
-│   ├── processed/            # Cleaned and transformed data
-│   └── external/             # Reference data, lookup tables, third-party files
-│
-├── notebooks/                # Jupyter, R Markdown, or Colab notebooks
-│
-├── scripts/                  # Reusable .py, .R, or .sh processing files
-│
-├── queries/                  # SQL files (retain this folder for SQL-heavy projects)
-│   ├── exploratory/          # Ad-hoc or investigative queries
-│   ├── transformations/      # Cleaning and reshaping logic
-│   └── final/                # Production-ready or presentation queries
-│
-├── reports/                  # Final outputs: PDFs, slide decks, Word docs
-│
-├── visuals/                  # Exported charts, dashboard screenshots, ERD diagrams
-│
-├── docs/                     # Data dictionaries, schema notes, reference material
-│
-├── project_metadata.yml      # Machine-readable metadata (optional)
-└── README.md                 # You are here
-```
-
-> ⚠️ *Delete folders you didn't use. An empty folder is worse than no folder.*
-> SQL-heavy projects: keep `queries/`. Analysis-only projects: keep `notebooks/`. Both? Keep both.
-
----
-
 ## 5. Data Workflow
 
 <!--
@@ -203,145 +167,12 @@ the day
 [Output / Visualisation / Reporting]
 ```
 
-1. **Source:** [Where did the data come from? Format, size, access method.]
-2. **Ingestion:** [How was it brought in?]
-3. **Cleaning:** [What issues did you find and fix?]
-4. **Transformation:** [What new fields, aggregations, or structures did you create?]
-5. **Analysis:** [What methods - statistical, visual, query-based, model-based?]
-6. **Output:** [What form do the results take?]
-
----
-
-## 6. Data Model & Schema
-
-<!--
-  Define your fields so that someone reading your analysis can follow along
-  without digging through your code.
-
-  WHAT GOOD LOOKS LIKE (one row example):
-  | transaction_id | string | Unique identifier per sales transaction | TXN-00482 |
-  | return_flag    | boolean | Whether the transaction included a return | TRUE |
-  | region_code    | string | Two-letter identifier for store region | "NE" |
-
-  WHAT TO AVOID:
-  ❌ Skipping this section because "the field names are self-explanatory."
-     They're not. Not to a reviewer. Not to you in six months.
-
-  📌 FOR SQL PROJECTS: If you have multiple tables, create one block per table.
-     Describe join keys and relationships here. Your ERD (Section 7) will
-     visualise what this section describes in text.
-
-  📌 FOR NON-SQL PROJECTS: Describe the shape of your dataset informally
-     if a formal schema doesn't apply. Even one paragraph is more helpful than nothing.
--->
-
-### Dataset / Table: `[name]`
-
-| Field Name | Data Type | Description | Example Value |
-|------------|-----------|-------------|---------------|
-| `[field_1]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_2]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_3]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-
-> **Row count (approx.):** [X rows]
-> **Date range:** [Start] – [End]
-> **Key join / relationship:** [e.g., `orders.customer_id` → `customers.id`]
-
-*Add additional table blocks as needed for multi-table projects.*
-
----
-
-## 7. ERD - Entity Relationship Diagram
-### *(Primarily for SQL Projects - remove this section if not applicable)*
-
-<!--
-  An ERD shows how your tables connect to each other visually.
-  It is the fastest way for a reviewer to understand the data structure
-  of a SQL project without reading every query.
-
-  HOW TO INCLUDE YOUR ERD:
-  Option A - Image embed (most common):
-    Export your ERD from dbdiagram.io, DBeaver, Lucidchart, or similar.
-    Save to /visuals/erd.png and reference it below.
-
-  Option B - dbdiagram.io code block (version-controllable):
-    Paste your schema definition code directly in the fenced block below.
-    Anyone can paste it into dbdiagram.io to regenerate the visual.
-
-  Option C - Mermaid diagram (renders natively in GitHub):
-    Use the mermaid code block syntax below.
-    GitHub will render this as a diagram automatically.
-
-  PICK ONE. Don't use all three. Delete the options you don't use.
--->
-
-### Option A - Embedded Image
-![ERD Diagram](visuals/erd.png)
-*[Brief caption: e.g., "Three-table schema - orders, customers, and products joined on shared IDs."]*
-
----
-
-### Option B - dbdiagram.io Schema Definition
-```
-Table orders {
-  order_id    int     [pk]
-  customer_id int     [ref: > customers.customer_id]
-  product_id  int     [ref: > products.product_id]
-  order_date  date
-  amount      float
-}
-
-Table customers {
-  customer_id int  [pk]
-  region_code string
-  signup_date date
-}
-
-Table products {
-  product_id   int    [pk]
-  category     string
-  unit_price   float
-}
-```
-*Paste this into [dbdiagram.io](https://dbdiagram.io) to view the visual.*
-
----
-
-### Option C - Mermaid Diagram *(renders on GitHub)*
-```mermaid
-erDiagram
-    ORDERS {
-        int order_id PK
-        int customer_id FK
-        int product_id FK
-        date order_date
-        float amount
-    }
-    CUSTOMERS {
-        int customer_id PK
-        string region_code
-        date signup_date
-    }
-    PRODUCTS {
-        int product_id PK
-        string category
-        float unit_price
-    }
-    ORDERS ||--o{ CUSTOMERS : "placed by"
-    ORDERS ||--o{ PRODUCTS : "contains"
-```
-
----
-
-**Table Relationships Summary:**
-
-| Relationship | Join Key | Type |
-|-------------|----------|------|
-| `orders` → `customers` | `customer_id` | Many-to-One |
-| `orders` → `products` | `product_id` | Many-to-One |
-| [Add rows as needed] | | |
-
----
+1. **Source:** [CSV files pulled from Kaggle for the weather parameters with monthly and yearly Energy Consumption [Watt.hour] covering 2017 - 2022.]
+2. **Ingestion:** [ Loaded into Python using pandas. a file that has 196,776 rows and 17 columns, another dataframe used for Antwerp, Belgium weather conditions loaded with 133669 rows and 11 columns.]
+3. **Cleaning:** [The percentage of null values across all columns is 0%]
+4. **Transformation:** [Created columns for fate parts: Year, Month, Day and Hour.]
+5. **Analysis:** [Descriptive statistics, weather conditions correlations and comparison. ]
+6. **Output:** [Summary report and processed CSV with synthesized recommendations.]
 
 ## 8. Analysis & Metrics
 
@@ -361,27 +192,59 @@ erDiagram
      Both belong in your project - the definition in the README,
      the implementation in the code.
 -->
+Metric #1: Antwerp Weather Conditions  (%)
+Definition: percentage of most frequent weather in Antwerp over the years.
+Why It Matters: to support the choice of chossing this region
+
+Metric #2: Energy by Weather Type
+Definition: which weather type where the Energy Consumption [W.h] is most
+Why It Matters: to support the hypothesis of optimal weather conditions for solar installment in Antwerp.
+
+Metric #3: Clouds %, Temperarture and Sun % in 2019 over months Line Chart
+Definition: line chart of month vs % of Sunny, Clouds, and Average Temperature. 
+Why It Matters: to pinpoint the optimal condition that could support high energy production from solar panels.
+
+Metric #4: Energy by Hour - Max GHI by Hour
+Definition: Hourly chart of energy delta (Wh) and Global Horizontal Irradiance (Watt/m^2), peaking at 10:00 AM.
+Why It Matters: Pinpoints daily production peaks, Antwerp reached approx, 1,960 W.h and 93 W/m^2 at 10 AM, guiding grid planners on when solar contribution is strongest.
+
+Metric #5: Relationship between Solar Radiation and Energy Consumption (Scatter Plot)
+Definition: Scatter plot of GHI vs. energy consumption (W.h)
+Why It Matters: Shows a strong correlation (0.91) between solar irradiance and energy output, proving GHI is the most critical driver of solar performance.
+
+Metric #6: Solar Radiation (GHI) and Temperarture by Month (2017-2022) 
+Definition:  Monthly averages of GHI (W/m²), temperature (°C), and energy delta (Wh).
+Why It Matters: Highlights seasonal variation, summer peaks boost efficiency, while winter drops require panel tilt optimization to capture lower-angle sunlight.
+
+Metric #7: Energy Consumption over 24 hour (Line Chart)
+Definition: Hourly energy delta (Wh) across a full day.
+Why It Matters: Reveals daily demand and production cycles, low activity at night, rising with daylight, and peaking midday at 10 AM.
+
+
 
 ### Analytical Approach
 
-[Describe how you approached the analysis. Were you exploring patterns? Testing a hypothesis? Building and validating a pipeline? Be honest about your method - exploratory work is valid, just call it that.]
+I approached the analysis as an exploratory study of patterns in solar energy performance. First, I selected Antwerp, Belgium because of its moderate climate and urban sustainability relevance. I began by checking the Energy Consumption delta [Wh] under clear weather to establish a baseline. Then I examined 2019 monthly variations in temperature, sunshine, and cloud cover to see if these conditions could in principle support high solar output. Moving to the hourly scale, I identified 10:00 AM as the peak energy consumption hour, which directly reflected the Global Horizontal Irradiance (GHI) peak of 93 W/m². Extending this across the full dataset (2012–2020), I confirmed that summer months consistently produced the highest energy output, reinforcing seasonal dependency. To validate system performance, I analyzed AC/DC power generation and inverter efficiency over daily cycles, showing ~980 kW DC converted to ~957 kW AC with ~97% efficiency. Finally, I benchmarked this against the EN 50524 European standard, confirming compliance.
+
+From this exploration, I concluded that GHI is the most critical driver (correlation 0.91), Antwerp’s climate (~46% cloud cover, ~20 °C) provides favorable conditions, and maintaining efficiency requires seasonal panel tilt, operating temperatures within 20–25 °C, storage integration, and diversified infrastructure to maximize year‑round solar output.
+
 
 ### Key Metrics Defined
 
 | Metric | Plain-Language Definition | Why It Matters |
 |--------|--------------------------|----------------|
-| `[Metric 1]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 2]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 3]` | [What it measures, in one sentence] | [What decision or question it answers] |
+| `[Metric 1]` | [Average energy output (Wh) under clear, cloudy, and rainy conditions.] | [Shows how weather variability directly impacts solar generation, highlighting clear skies as optimal.] |
+| `[Metric 2]` | [Monthly averages of cloud cover, sunshine percentage, and ambient temperature.] | [Identifies the combination of conditions (e.g., June’s 20 °C, 70% sun, 46% clouds) that maximize panel efficiency.] |
+| `[Metric 3]` | [Energy delta (Wh) and Global Horizontal Irradiance (W/m²) measured across 24 hours.] | [Pinpoints peak production at 10:00 AM, guiding grid planning and storage alignment.] |
+| `[Metric 4]` | [Daily cycle of DC power captured, AC power delivered, and inverter efficiency.] | [Validates conversion reliability (~97%) and compliance with EN 50524 standards.] |
 
 ### Methods Used
 
-- [e.g., Descriptive statistics - distribution, central tendency, outlier detection]
-- [e.g., Trend analysis across [time period]]
-- [e.g., Segmentation / group comparison by [dimension]]
-- [e.g., Correlation analysis between [variable A] and [variable B]]
-- [e.g., SQL window functions for [specific aggregation]]
-- [e.g., Custom aggregation or transformation logic in [tool]]
+- [Descriptive statistics: distribution of energy output by weather type.]
+- [Trend analysis: seasonal variation in GHI, temperature, and energy consumption (2012–2020).]
+- [Segmentation : grouping by clear, cloudy, and rainy conditions.]
+- [Correlation analysis between [GHI] and [energy output (r = 0.91)]]
+- [Benchmarking:  compared inverter efficiency against European EN 50524 standard.]
 
 ---
 
@@ -405,17 +268,17 @@ erDiagram
   Aim for 3–6 insights. Quality over quantity.
 -->
 
-**Insight 1: [Short descriptive headline]**
-[What you found + what it suggests. One short paragraph.]
+**Insight 1: [Antwerp’s climate is favorable ]**
+[With ~46% cloud cover and ~20 °C average temperatures, Antwerp provides conditions that align with the ideal photovoltaic operating range (20–25 °C). This suggests moderate climates can sustain high efficiency without overheating risks.]
 
-**Insight 2: [Short descriptive headline]**
-[What you found + what it suggests.]
+**Insight 2: [Solar radiation drives output]**
+[Energy production is tightly correlated with GHI (0.91), confirming irradiance as the single most critical driver of solar performance. This means grid planners should prioritize irradiance forecasting over other weather variables.]
 
-**Insight 3: [Short descriptive headline]**
-[What you found + what it suggests.]
+**Insight 3: [Daily and seasonal peaks matter]**
+[Energy consistently peaks at 10:00 AM and during summer months, showing predictable cycles. This implies storage and demand-side management should be aligned with these peak windows to maximize utilization.]
 
-**Insight 4 (if applicable): [Short descriptive headline]**
-[What you found + what it suggests.]
+**Insight 4: [Efficiency is reliable and standardized  ]**
+Inverter efficiency averaged ~97%, matching EN 50524 standards. This validates that nearly all captured solar energy is delivered as usable electricity, reinforcing confidence in system design and scalability.
 
 ---
 
@@ -442,9 +305,11 @@ erDiagram
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | [Specific, actionable step] | [Insight it comes from] | [Who should act] |
-| Medium | [Specific, actionable step] | [Insight it comes from] | [Who should act] |
-| Low | [Exploratory or longer-term suggestion] | [Insight it comes from] | [Who should act] |
+| High | [Implement real‑time monitoring of Global Horizontal Irradiance (GHI) to forecast solar output and align grid planning.] | [Insight 1 – GHI correlation coefficient of 0.91 with energy output.] | [Grid Operations / Energy Analytics Team] |
+| High | [Adopt seasonal panel tilt adjustments during winter to maintain ~97% efficiency.] | [Insight 3 – Seasonal variation shows winter drop in GHI and energy output.] | [Solar Plant Engineering Team] |
+| Medium | [Maintain panel operating temperatures within 20–25 °C through cooling or tilt strategies.] | [Insight 2 – Antwerp’s climate aligns with ideal photovoltaic range.] | [Plant Maintenance / Technical Operations] |
+| Medium | [Integrate battery storage solutions to buffer against daily and seasonal volatility.] | [Insight 3 – Daily peaks at 10:00 AM and summer highs require storage alignment.] | [Infrastructure / Energy Storage Division] |
+| Low | [Diversify solar infrastructure locations and designs to maximize year‑round output.] | [Insight 4 – Efficiency validated against EN 50524, but resilience requires diversification.] | [Strategic Planning / Sustainability Office] |
 
 ---
 
