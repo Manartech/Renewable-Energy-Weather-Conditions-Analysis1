@@ -6,12 +6,12 @@
 ## ⚙️ Project Type Flags
 > *Check what applies. This helps reviewers and collaborators understand the nature of the work at a glance. Delete this block before publishing.*
 
-- [ ] Exploratory Data Analysis (EDA)
+- [✅ ] Exploratory Data Analysis (EDA)
 - [ ] SQL Analysis / Querying
 - [ ] Dashboard / Data Visualization
 - [ ] Data Pipeline / ETL
 - [ ] Predictive Modelling / Machine Learning
-- [ ] Data Cleaning / Wrangling
+- [ ✅] Data Cleaning / Wrangling
 - [ ] End-to-End (multiple of the above)
 - [ ] Other: ___________
 
@@ -46,14 +46,15 @@
   A project engineer is tasked with commissioning a solar energy project. Short‑term weather changes explain about 61% of the variation in renewable energy output, this unpredictability makes grid planning harder, increases costs, and lowers efficiency—especially during cloudy or rainy conditions. The key business issue is how to manage this volatility to ensure stable performance and financial returns.
 
 -->
+ A project engineer is tasked with commissioning a solar energy project. Short‑term weather changes explain about 61% of the variation in renewable energy output, this unpredictability makes grid planning harder, increases costs, and lowers efficiency—especially during cloudy or rainy conditions. The key business issue is how to manage this volatility to ensure stable performance and financial returns.
+ 
+**Context:** [The project was motivated by the global push toward renewable energy and the need to understand how weather variability impacts solar power performance. Antwerp, Belgium was chosen as a case study due to its moderate climate and relevance for urban sustainability.]
 
-**Context:** [The business, research, or personal situation that motivated this project.]
+**Problem Statement:** [The challenge was that short-term weather variability explained 61% of renewable energy output changes in 2020, making solar generation highly dependent on radiation and temperature. This volatility complicates grid planning, raises costs, and reduces efficiency, especially during cloudy or rainy conditions.]
 
-**Problem Statement:** [The specific question or challenge you were addressing.]
+**Approach:** [I analyzed solar datasets (2012–2020) including GHI, AC/DC power, inverter efficiency, temperature, and cloud cover. By correlating weather conditions with energy output, you identified peak production times, seasonal variations, and efficiency benchmarks against European standards.]
 
-**Approach:** [In 1–2 sentences - how did you tackle it?]
-
-**Outcome:** [What did you produce or discover?]
+**Outcome:** [The study found that solar radiation (GHI) is the most critical driver of energy output (correlation coefficient 0.91). Peak solar potential occurred at 10:00 AM with ~1,960 Wh output, and inverter efficiency averaged 97%, meeting international standards. Recommendations included seasonal panel tilt adjustments, maintaining operating temperatures (20–25℃), and integrating storage solutions to maximize year-round efficiency.]
 
 ---
 
@@ -108,10 +109,11 @@ the day
 
 | Dimension | Details |
 |-----------|---------|
-| **In Scope** | [What is included - data sources, time periods, segments] |
-| **Out of Scope** | [What you explicitly excluded - and a brief reason why] |
-| **Time Period** | [Date range of the data or the project itself] |
-| **Granularity** | [Unit of analysis - row-level, daily aggregates, per-user, etc.] |
+| **In Scope** | [ Information on energy consumption and various weather parameters such as solar radiation, temperature, pressure, humidity, wind speed, and precipitation with weather conditions of Antwerp, Belgium 2012-2019 supported by solar power generation data as sample data to be utilized for the case study.
+] |
+| **Out of Scope** | [The analysis of other renewable energy data like wind speed, because the case study focused to be on solar and focusing on wind speed will require more data and more complex analysis.] |
+| **Time Period** | [3 May 2026 - 14 May 2026] |
+
 
 ### Tools & Technologies
 
@@ -122,13 +124,12 @@ the day
 
 | Category | Tool(s) Used |
 |----------|-------------|
-| Data Storage | [e.g., PostgreSQL, CSV files, BigQuery, S3] |
-| Data Processing | [e.g., Python, R, SQL, Excel, dbt] |
-| Analysis | [e.g., pandas, dplyr, custom SQL queries] |
-| Visualization | [e.g., Matplotlib, Tableau, Power BI, Looker] |
-| Version Control | [e.g., Git / GitHub] |
-| Documentation | [e.g., Markdown, Notion] |
-| Other | [Any additional tools] |
+| Data Storage | [CSV files, BigQuery] |
+| Data Processing | Python, Tableau and Excel] |
+| Analysis | [pandas] |
+| Visualization | [Matplotlib, Tableau] |
+| Documentation | [Markdown] |
+
 
 ---
 
